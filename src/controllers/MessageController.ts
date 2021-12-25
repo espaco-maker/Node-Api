@@ -27,7 +27,7 @@ export class MessageController {
 			Message: message,
 			Name: name,
 		});
-		return res.status(200).json({
+		return res.json({
 			message: "Message sent successfully",
 			error: false,
 		});
@@ -36,7 +36,7 @@ export class MessageController {
 	async getMessages(req, res) {
 		const messageService = new MessageService();
 		const messages = await messageService.getMessages();
-		return res.status(200).json({
+		return res.json({
 			messages,
 			error: false,
 		});
