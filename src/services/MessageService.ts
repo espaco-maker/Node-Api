@@ -1,25 +1,28 @@
 import { prisma } from "../prisma";
 
 type Message = {
-	Name: string;
+	FirstName: string;
+	LastName: string;
 	Email: string;
 	Message: string;
 };
 
 export class MessageService {
-	async execute({ Name, Email, Message }: Message) {
+	async execute({ FirstName, LastName, Email, Message }: Message) {
 		// if email is not exists in database create new user
 		const user = await prisma.users.findFirst({ where: { Email } });
 		if (!user) {
 			await prisma.users.create({
 				data: {
-					Name,
+					FirstName,
+					LastName,
 					Email,
 					Messages: {
 						create: {
 							Message,
 							Email,
-							Name,
+							FirstName,
+							LastName,
 						},
 					},
 				},
@@ -31,7 +34,8 @@ export class MessageService {
 				data: {
 					Message,
 					Email,
-					Name,
+					FirstName,
+					LastName,
 				},
 			});
 		}
@@ -43,7 +47,8 @@ export class MessageService {
 			const user = users.find((user) => user.Email === message.Email);
 			return {
 				...message,
-				Name: user.Name,
+				FirstName: user.FirstName,
+				LastName: user.LastName,
 			};
 		});
 	}

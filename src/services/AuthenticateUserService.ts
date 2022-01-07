@@ -8,7 +8,8 @@ type AuthenticateUserLogin = {
 };
 
 type AuthenticateUserSignup = {
-	name: string;
+	firstName: string;
+	lastName: string;
 	email: string;
 	password: string;
 };
@@ -34,7 +35,8 @@ export class AuthenticateUserService {
 		const user = await AuthenticateUser.create({
 			data: {
 				Email: data.email,
-				Name: data.name,
+				FirstName: data.firstName,
+				LastName: data.lastName,
 				Password: passwordHash,
 			},
 		});

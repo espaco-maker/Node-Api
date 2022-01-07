@@ -8,22 +8,24 @@ generator client {
 }
 
 model Messages {
-  id       Int      @id @default(autoincrement())
-  Name     String
-  Email    String
-  Message  String
-  creat_at DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  FirstName String
+  LastName  String
+  Email     String
+  Message   String
+  creat_at  DateTime @default(now())
 
   Users Users[]
   @@map("messages")
 }
 
 model UsersSingup {
-  id       Int      @id @default(autoincrement())
-  Email    String
-  Name     String
-  Password String
-  creat_at DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  Email     String
+  FirstName String
+  LastName  String
+  Password  String
+  creat_at  DateTime @default(now())
 
   @@map("userssingup")
 }
@@ -31,7 +33,8 @@ model UsersSingup {
 model Users {
   id         Int      @id @default(autoincrement())
   Email      String
-  Name       String
+  FirstName  String
+  LastName   String
   Messages   Messages @relation(fields: [messagesId], references: [id])
   creat_at   DateTime @default(now())
   messagesId Int

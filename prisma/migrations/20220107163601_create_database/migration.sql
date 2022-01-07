@@ -1,7 +1,8 @@
 -- CreateTable
 CREATE TABLE "messages" (
     "id" SERIAL NOT NULL,
-    "Name" TEXT NOT NULL,
+    "FirstName" TEXT NOT NULL,
+    "LastName" TEXT NOT NULL,
     "Email" TEXT NOT NULL,
     "Message" TEXT NOT NULL,
     "creat_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -13,7 +14,8 @@ CREATE TABLE "messages" (
 CREATE TABLE "userssingup" (
     "id" SERIAL NOT NULL,
     "Email" TEXT NOT NULL,
-    "Name" TEXT NOT NULL,
+    "FirstName" TEXT NOT NULL,
+    "LastName" TEXT NOT NULL,
     "Password" TEXT NOT NULL,
     "creat_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -24,7 +26,8 @@ CREATE TABLE "userssingup" (
 CREATE TABLE "users" (
     "id" SERIAL NOT NULL,
     "Email" TEXT NOT NULL,
-    "Name" TEXT NOT NULL,
+    "FirstName" TEXT NOT NULL,
+    "LastName" TEXT NOT NULL,
     "creat_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "messagesId" INTEGER NOT NULL,
 
