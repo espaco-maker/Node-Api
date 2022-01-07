@@ -18,6 +18,10 @@ export class AuthenticateUserService {
 	static async singup(data: AuthenticateUserSignup) {
 		const AuthenticateUser = prisma.usersSingup;
 
+		if (!data.email || !data.password || !data.firstName || !data.lastName) {
+			throw new Error("Preencha todos os campos");
+		}
+
 		const userExists = await AuthenticateUser.findFirst({
 			where: {
 				Email: data.email,
