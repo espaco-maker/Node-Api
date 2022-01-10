@@ -12,4 +12,8 @@ router.post(
 	new AuthenticateUserController().validateToken,
 );
 
+router.get("/", (req, res) => {
+	res.send("Hello World!");
+});
+
 export { router };
