@@ -3,15 +3,16 @@ import { MessageService } from "../services/MessageService";
 
 export class MessageController {
 	async handle(req: Request, res: Response) {
-		const { email, message, firstName, lastName } = req.body;
-		if (!message || !firstName || !lastName || !email) {
+		const { Email, Message, FirstName, LastName } = req.body;
+
+		if (!Message || !FirstName || !LastName || !Email) {
 			return res.status(400).json({
 				message: "Please fill all the fields",
 				fields: {
-					message: !message ? "Message is required" : "",
-					firstName: !firstName ? "First Name is required" : "",
-					lastName: !lastName ? "Last Name is required" : "",
-					email: !email ? "Email is required" : "",
+					message: !Message ? "Message is required" : "",
+					firstName: !FirstName ? "First Name is required" : "",
+					lastName: !LastName ? "Last Name is required" : "",
+					Email: !Email ? "Email is required" : "",
 				},
 				error: true,
 			});
@@ -19,10 +20,10 @@ export class MessageController {
 
 		const messageService = new MessageService();
 		await messageService.execute({
-			Email: email,
-			Message: message,
-			FirstName: firstName,
-			LastName: lastName,
+			Email,
+			Message,
+			FirstName,
+			LastName,
 		});
 		return res.json({
 			message: "Message sent successfully",
