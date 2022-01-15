@@ -26,12 +26,12 @@ const webToken = __importStar(require("jsonwebtoken"));
 class AuthenticateUserService {
     static async signup(data) {
         const AuthenticateUser = prisma_1.prisma.usersSignup;
-        if (!data.email || !data.password || !data.firstName || !data.lastName) {
+        if (!data.Email || !data.Password || !data.FirstName || !data.LastName) {
             throw new Error("Dados inválidos");
         }
         const userExists = await AuthenticateUser.findFirst({
             where: {
-                Email: data.email,
+                Email: data.Email,
             },
         });
         if (userExists) {
@@ -39,13 +39,13 @@ class AuthenticateUserService {
         }
         const buffer = 10;
         const salt = await bcrypt.genSalt(buffer);
-        const passwordHash = await bcrypt.hash(data.password, salt);
+        const PasswordHash = await bcrypt.hash(data.Password, salt);
         const user = await AuthenticateUser.create({
             data: {
-                Email: data.email,
-                FirstName: data.firstName,
-                LastName: data.lastName,
-                Password: passwordHash,
+                Email: data.Email,
+                FirstName: data.FirstName,
+                LastName: data.LastName,
+                Password: PasswordHash,
             },
         });
         delete user.Password;
@@ -55,14 +55,14 @@ class AuthenticateUserService {
         const AuthenticateUser = prisma_1.prisma.usersSignup;
         const user = await AuthenticateUser.findFirst({
             where: {
-                Email: data.email,
+                Email: data.Email,
             },
         });
         if (!user) {
             throw new Error("Usuário não encontrado");
         }
-        const passwordMatched = await bcrypt.compare(data.password, user.Password);
-        if (!passwordMatched) {
+        const PasswordMatched = await bcrypt.compare(data.Password, user.Password);
+        if (!PasswordMatched) {
             throw new Error("Senha inválida");
         }
         const secret = process.env.JWT_SECRET;
