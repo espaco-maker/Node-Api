@@ -19,7 +19,7 @@ model Messages {
   @@map("messages")
 }
 
-model Userssignup {
+model usersSignup {
   id        Int      @id @default(autoincrement())
   Email     String
   FirstName String
