@@ -19,7 +19,7 @@ export class AuthenticateUserService {
 		const AuthenticateUser = prisma.usersSignup;
 
 		if (!data.email || !data.password || !data.firstName || !data.lastName) {
-			throw new Error();
+			throw new Error("Dados inválidos");
 		}
 
 		const userExists = await AuthenticateUser.findFirst({

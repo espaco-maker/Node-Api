@@ -25,9 +25,9 @@ const bcrypt = __importStar(require("bcrypt"));
 const webToken = __importStar(require("jsonwebtoken"));
 class AuthenticateUserService {
     static async signup(data) {
-        const AuthenticateUser = prisma_1.prisma.userssignup;
+        const AuthenticateUser = prisma_1.prisma.usersSignup;
         if (!data.email || !data.password || !data.firstName || !data.lastName) {
-            throw new Error("Preencha todos os campos");
+            throw new Error("Dados inválidos");
         }
         const userExists = await AuthenticateUser.findFirst({
             where: {
@@ -52,7 +52,7 @@ class AuthenticateUserService {
         return user;
     }
     static async login(data) {
-        const AuthenticateUser = prisma_1.prisma.userssignup;
+        const AuthenticateUser = prisma_1.prisma.usersSignup;
         const user = await AuthenticateUser.findFirst({
             where: {
                 Email: data.email,
