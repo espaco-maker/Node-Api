@@ -1,9 +1,9 @@
 import { AuthenticateUserService } from "../services/AuthenticateUserService";
 
 export class AuthenticateUserController {
-	async singup(req, res) {
+	async signup(req, res) {
 		try {
-			const response = await AuthenticateUserService.singup(req.body);
+			const response = await AuthenticateUserService.signup(req.body);
 			return res.json({ response, success: true });
 		} catch (error) {
 			return res.status(400).json({ error: error.message, success: false });

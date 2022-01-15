@@ -15,8 +15,8 @@ type AuthenticateUserSignup = {
 };
 
 export class AuthenticateUserService {
-	static async singup(data: AuthenticateUserSignup) {
-		const AuthenticateUser = prisma.usersSingup;
+	static async signup(data: AuthenticateUserSignup) {
+		const AuthenticateUser = prisma.userssignup;
 
 		if (!data.email || !data.password || !data.firstName || !data.lastName) {
 			throw new Error("Preencha todos os campos");
@@ -50,7 +50,7 @@ export class AuthenticateUserService {
 	}
 
 	static async login(data: AuthenticateUserLogin) {
-		const AuthenticateUser = prisma.usersSingup;
+		const AuthenticateUser = prisma.userssignup;
 		const user = await AuthenticateUser.findFirst({
 			where: {
 				Email: data.email,

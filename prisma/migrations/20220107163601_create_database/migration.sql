@@ -11,7 +11,7 @@ CREATE TABLE "messages" (
 );
 
 -- CreateTable
-CREATE TABLE "userssingup" (
+CREATE TABLE "userssignup" (
     "id" SERIAL NOT NULL,
     "Email" TEXT NOT NULL,
     "FirstName" TEXT NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE "userssingup" (
     "Password" TEXT NOT NULL,
     "creat_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT "userssingup_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "userssignup_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable

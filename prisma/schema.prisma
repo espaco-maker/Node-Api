@@ -19,7 +19,7 @@ model Messages {
   @@map("messages")
 }
 
-model UsersSingup {
+model Userssignup {
   id        Int      @id @default(autoincrement())
   Email     String
   FirstName String
@@ -27,7 +27,7 @@ model UsersSingup {
   Password  String
   creat_at  DateTime @default(now())
 
-  @@map("userssingup")
+  @@map("userssignup")
 }
 
 model Users {

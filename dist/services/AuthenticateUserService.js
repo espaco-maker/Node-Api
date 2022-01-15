@@ -24,8 +24,8 @@ const prisma_1 = require("../prisma");
 const bcrypt = __importStar(require("bcrypt"));
 const webToken = __importStar(require("jsonwebtoken"));
 class AuthenticateUserService {
-    static async singup(data) {
-        const AuthenticateUser = prisma_1.prisma.usersSingup;
+    static async signup(data) {
+        const AuthenticateUser = prisma_1.prisma.userssignup;
         if (!data.email || !data.password || !data.firstName || !data.lastName) {
             throw new Error("Preencha todos os campos");
         }
@@ -52,7 +52,7 @@ class AuthenticateUserService {
         return user;
     }
     static async login(data) {
-        const AuthenticateUser = prisma_1.prisma.usersSingup;
+        const AuthenticateUser = prisma_1.prisma.userssignup;
         const user = await AuthenticateUser.findFirst({
             where: {
                 Email: data.email,
