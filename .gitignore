@@ -4,3 +4,4 @@ prisma/dev.*
 *.lock
 .DS_Store
 .env.local
+cache/*

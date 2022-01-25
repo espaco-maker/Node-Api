@@ -1,4 +1,5 @@
 import { prisma } from "../prisma";
+import NodeCache from "node-cache";
 
 type Message = {
 	FirstName: string;
@@ -6,6 +7,10 @@ type Message = {
 	Email: string;
 	Message: string;
 };
+
+const CACHE_LIMIT = 2;
+const dbCache = new NodeCache({ stdTTL: CACHE_LIMIT, checkperiod: 0.2 });
+const Hash = "sha256";
 
 export class MessageService {
 	async execute({ FirstName, LastName, Email, Message }: Message) {
@@ -41,6 +46,10 @@ export class MessageService {
 		}
 	}
 	async getMessages() {
+		if (dbCache.has(Hash)) {
+			return JSON.stringify(dbCache.get(Hash));
+		}
+
 		const messages = await prisma.messages.findMany();
 		const users = await prisma.users.findMany();
 		return messages.map((message) => {
